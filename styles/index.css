@@ -75,17 +75,29 @@ body {
 }
 
 .all-tasks {
-  background-color: #31b48d;
+  background: url('../images/all_tasks_bg.jpg'), rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: multiply;
 }
 
 .active-tasks {
-  background-color: #38a1f2;
+  background: url('../images/active_task_bg.svg'), rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: multiply;
 }
 
 .padding-tasks {
-  background-color: #7538c7;
+  background: url('../images/padding_tasks_bg.svg'), rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: multiply;
 }
 
 .closed-tasks {
-  background-color: #3b67a4;
+  background: url('../images/closed_tasks_bg.svg'), rgba(0, 0, 0, 0.3);
+  background-size: cover;
+  background-position: center center;
+  background-blend-mode: multiply;
 }
