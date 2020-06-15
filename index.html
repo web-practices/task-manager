@@ -10,52 +10,68 @@
     <script type="text/javascript" src="./js/modal.js"></script>
     <script type="text/javascript" src="./js/index.js"></script>
   </head>
-  <body class="theme" onload="showTasks()">
+  <body class="theme" onload="showAllTasks()">
     <main id="container" class="container">
       <header>
         <h1 class="title">Manage Your Tasks</h1>
       </header>
       <nav id="overview" class="overview">
-        <section id="allTasks" class="statistics all-tasks">
+        <section
+          id="allTasks"
+          class="statistics all-tasks"
+          onclick="filterTasksByStatus('All')"
+        >
           <div class="statistics-left">
             <h3 class="statistices-title">All Tasks</h3>
-            <p class="statistics-content">
+            <p id="allTasksCount" class="statistics-content">
               3841
             </p>
           </div>
           <div class="statistics-right"></div>
         </section>
-        <section id="activeTasks" class="statistics active-tasks">
+        <section
+          id="activeTasks"
+          class="statistics active-tasks"
+          onclick="filterTasksByStatus('Active')"
+        >
           <div class="statistics-left">
             <h3 class="statistices-title">Active Tasks</h3>
-            <p class="statistics-content">
+            <p id="activeTasksCount" class="statistics-content">
               2456
             </p>
           </div>
           <div class="statistics-right">
-            <p class="statistics-proportion">60%</p>
+            <p id="activeTasksProportion" class="statistics-proportion">60%</p>
           </div>
         </section>
-        <section id="paddingTasks" class="statistics padding-tasks">
+        <section
+          id="paddingTasks"
+          class="statistics padding-tasks"
+          onclick="filterTasksByStatus('Padding')"
+        >
           <div class="statistics-left">
             <h3 class="statistices-title">Padding Tasks</h3>
-            <p class="statistics-content">
+            <p id="paddingTasksCount" class="statistics-content">
               1345
             </p>
           </div>
           <div class="statistics-right">
-            <p class="statistics-proportion">20%</p>
+            <p id="paddingTasksProportion" class="statistics-proportion">20%</p>
           </div>
         </section>
-        <section id="closedTasks" class="statistics closed-tasks">
+        <section
+          id="closedTasks"
+          class="statistics closed-tasks"
+          onclick="filterTasksByStatus('Closed')"
+        >
           <div class="statistics-left">
             <h3 class="statistices-title">Closed Tasks</h3>
-            <p class="statistics-content">
+            <p id="closedTasksCount" class="statistics-content">
               1345
             </p>
           </div>
           <div class="statistics-right">
-            <p class="statistics-proportion">20%</p>
+            <p id="closedTasksProportion" class="statistics-proportion">20%</p>
           </div>
         </section>
       </nav>

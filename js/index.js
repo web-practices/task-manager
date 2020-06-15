@@ -63,6 +63,60 @@ function search(event) {
   }
 }
 
+function filterTasksByStatus(status) {
+  switch (status) {
+    case 'All':
+    default:
+      showAllTasks();
+      break;
+    case 'Active':
+    case 'Padding':
+    case 'Closed':
+      showTasks(tasks.filter((task) => task.status === status));
+      break;
+  }
+}
+
+function showStatisticesCards() {
+  let allTasksCount = tasks.length;
+  document.getElementById('allTasksCount').textContent = allTasksCount;
+  let activeTasksCount = tasks.filter((task) => task.status === 'Active')
+    .length;
+  document.getElementById('activeTasksCount').textContent = activeTasksCount;
+  let activeTasksProportion =
+    allTasksCount > 0
+      ? Math.round((activeTasksCount / allTasksCount) * 100) + '%'
+      : '0%';
+  document.getElementById(
+    'activeTasksProportion'
+  ).textContent = activeTasksProportion;
+  let paddingTasksCount = tasks.filter((task) => task.status === 'Padding')
+    .length;
+  document.getElementById('paddingTasksCount').textContent = paddingTasksCount;
+  let paddingTasksProportion =
+    allTasksCount > 0
+      ? Math.round((paddingTasksCount / allTasksCount) * 100) + '%'
+      : '0%';
+  document.getElementById(
+    'paddingTasksProportion'
+  ).textContent = paddingTasksProportion;
+  let closedTasksCount = tasks.filter((task) => task.status === 'Padding')
+    .length;
+  document.getElementById('closedTasksCount').textContent = closedTasksCount;
+  let closedTasksProportion =
+    allTasksCount > 0
+      ? Math.round((closedTasksCount / allTasksCount) * 100) + '%'
+      : '0%';
+  document.getElementById(
+    'closedTasksProportion'
+  ).textContent = closedTasksProportion;
+}
+
+function showAllTasks() {
+  showStatisticesCards();
+  showTasks(tasks);
+}
+
 function showTasks(tasks) {
   let taskBody = document.getElementById('taskbody');
   taskBody.innerHTML = '';
