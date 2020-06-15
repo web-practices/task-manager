@@ -1,57 +1,7 @@
-var tasks = [
-  {
-    id: 1,
-    name: 'Learing Javascript',
-    description: 'From now, you will learn Javascript. About 3 hours a week.',
-    deadline: '2020-12-03',
-    status: 'Active',
-  },
-  {
-    id: 2,
-    name: 'Learing React',
-    description:
-      'React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.',
-    deadline: '2020-09-03',
-    status: 'Padding',
-  },
-  {
-    id: 3,
-    name: 'Learing Node',
-    description:
-      'The API reference documentation provides detailed information about a function or object in Node.js. This documentation indicates what arguments a method accepts, the return value of that method, and what errors may be related to that method. It  also indicates which methods are available for different versions of Node.js.',
-    deadline: '2020-03-03',
-    status: 'Closed',
-  },
-  {
-    id: 4,
-    name: 'Learing Javascript',
-    description: 'From now, you will learn Javascript. About 3 hours a week.',
-    deadline: '2020-12-03',
-    status: 'Active',
-  },
-  {
-    id: 5,
-    name: 'Learing React',
-    description:
-      'React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.',
-    deadline: '2020-09-03',
-    status: 'Padding',
-  },
-  {
-    id: 6,
-    name: 'Learing Node',
-    description:
-      'The API reference documentation provides detailed information about a function or object in Node.js. This documentation indicates what arguments a method accepts, the return value of that method, and what errors may be related to that method. It  also indicates which methods are available for different versions of Node.js.',
-    deadline: '2020-03-03',
-    status: 'Closed',
-  },
-];
 function searchTasks() {
   let searchText = document.getElementById('searchText').value;
   if (searchText.trim()) {
-    let filteredTasks = tasks.filter((task) =>
-      task.name.includes(searchText.trim())
-    );
+    let filteredTasks = findTasksByName(searchText.trim());
     showTasks(filteredTasks);
   }
 }
@@ -71,13 +21,13 @@ function filterTasksByStatus(status) {
     case 'Active':
     case 'Padding':
     case 'Closed':
-      showTasks(tasks.filter((task) => task.status === status));
+      showTasks(findTasksByStatus(status));
       break;
   }
 }
 
 function showStatisticesCards() {
-  let allTasksCount = tasks.length;
+  let allTasksCount = getAllTasks().length;
   document.getElementById('allTasksCount').textContent = allTasksCount;
   let activeTasksCount = tasks.filter((task) => task.status === 'Active')
     .length;
@@ -112,13 +62,19 @@ function showStatisticesCards() {
 }
 
 function showAllTasks() {
+  saveAllTasks(tasks);
+  renderPage();
+}
+
+function renderPage() {
   showStatisticesCards();
-  showTasks(tasks);
+  showTasks(getAllTasks());
 }
 
 function showTasks(tasks) {
   let taskBody = document.getElementById('taskbody');
   taskBody.innerHTML = '';
+  console.log(tasks);
   if (tasks && tasks.length > 0) {
     tasks.forEach((task, index) => {
       let li = generateTaskElement(task, index + 1);

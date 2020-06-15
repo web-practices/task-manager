@@ -16,7 +16,7 @@ function showDeleteModalPopover(id) {
   let modalContainer = document.getElementById('modalContainer');
   modalContainer.innerHTML = '';
   let p = document.createElement('p');
-  let taskName = tasks.find((task) => task.id === id).name;
+  let taskName = findTask(id).name;
   p.textContent = 'Do you confirm to delete task: "' + taskName + '" ?';
   modalContainer.appendChild(p);
   let okBtn = document.getElementById('modalBtnOk');
@@ -25,7 +25,7 @@ function showDeleteModalPopover(id) {
 }
 
 function deleteTask(id) {
-  tasks = tasks.filter((task) => task.id !== id);
-  showAllTasks();
+  removeTask(id);
+  renderPage();
   hideModalPopover();
 }
