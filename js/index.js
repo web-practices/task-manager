@@ -47,13 +47,31 @@ const tasks = [
   },
 ];
 
-function showTasks() {
+function searchTasks() {
+  let searchText = document.getElementById('searchText').value;
+  if (searchText.trim()) {
+    let filteredTasks = tasks.filter((task) =>
+      task.name.includes(searchText.trim())
+    );
+    showTasks(filteredTasks);
+  }
+}
+
+function search(event) {
+  if (event.keyCode === 13) {
+    searchTasks();
+  }
+}
+
+function showTasks(tasks) {
   let taskBody = document.getElementById('taskbody');
   taskBody.innerHTML = '';
-  tasks.forEach((task, index) => {
-    let li = generateTaskElement(task, index + 1);
-    taskBody.appendChild(li);
-  });
+  if (tasks && tasks.length > 0) {
+    tasks.forEach((task, index) => {
+      let li = generateTaskElement(task, index + 1);
+      taskBody.appendChild(li);
+    });
+  }
 }
 
 function generateTaskElement(task, index) {

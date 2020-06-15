@@ -64,11 +64,13 @@
           <h2 class="task-list-title">Your Tasks List</h2>
           <p class="tools">
             <input
+              id="searchText"
               type="text"
               class="search-input"
               placeholder="Please enter task name to search"
+              onkeydown="search(event)"
             />
-            <button class="btn btn-search">
+            <button class="btn btn-search" onclick="searchTasks()">
               <img src="./images/search.svg" />
             </button>
             <button class="btn">
