@@ -109,23 +109,19 @@
     </main>
     <article id="modal" class="modal">
       <section id="popover" class="popover">
-        <header id="modalTitle" class="modal-title">
-          <img src="./images/modal_delete_icon.svg" />
-          <h2>Delete Task</h2>
-          <button class="btn-icon" onclick="hideMedalPopover()">
+        <header class="modal-title">
+          <img id="modalIcon" alt="icon" />
+          <h2 id="modalTitle"></h2>
+          <button class="btn-icon" onclick="hideModalPopover()">
             <img src="./images/modal_cancel_icon.svg" />
           </button>
         </header>
-        <section id="modalContainer" class="modalContainer">
-          <p>
-            Do you confirm to delete task: "Learing React" ?
-          </p>
-        </section>
+        <section id="modalContainer" class="modalContainer"></section>
         <footer id="modalFooter" class="modal-footer">
-          <button class="model-btn-cancel" onclick="hideMedalPopover()">
+          <button class="model-btn-cancel" onclick="hideModalPopover()">
             取消
           </button>
-          <button class="model-btn-ok">确认</button>
+          <button id="modalBtnOk" class="model-btn-ok">确认</button>
         </footer>
       </section>
     </article>

@@ -1,4 +1,4 @@
-const tasks = [
+var tasks = [
   {
     id: 1,
     name: 'Learing Javascript',
@@ -46,7 +46,6 @@ const tasks = [
     status: 'Closed',
   },
 ];
-
 function searchTasks() {
   let searchText = document.getElementById('searchText').value;
   if (searchText.trim()) {
@@ -100,7 +99,7 @@ function showStatisticesCards() {
   document.getElementById(
     'paddingTasksProportion'
   ).textContent = paddingTasksProportion;
-  let closedTasksCount = tasks.filter((task) => task.status === 'Padding')
+  let closedTasksCount = tasks.filter((task) => task.status === 'Closed')
     .length;
   document.getElementById('closedTasksCount').textContent = closedTasksCount;
   let closedTasksProportion =
@@ -172,7 +171,7 @@ function generateTaskElement(task, index) {
   operatorElement.classList.add('task-operation-col');
   let deleteBtn = document.createElement('button');
   deleteBtn.classList.add('btn-icon');
-  deleteBtn.setAttribute('onclick', 'showMedalPopover()');
+  deleteBtn.setAttribute('onclick', 'showDeleteModalPopover(' + task.id + ')');
   let deleteIcon = document.createElement('img');
   deleteIcon.setAttribute('src', './images/delete.svg');
   deleteBtn.appendChild(deleteIcon);
