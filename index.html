@@ -5,6 +5,8 @@
       Task Manager
     </title>
     <link rel="stylesheet" type="text/css" href="./styles/index.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/modal.css" />
+    <script type="text/javascript" src="./js/modal.js"></script>
   </head>
   <body class="theme">
     <main id="container" class="container">
@@ -91,7 +93,7 @@
               <span class="task-deadline-col">2020-12-03</span>
               <span class="task-status-col active">Active</span>
               <span class="task-operation-col"
-                ><button class="btn-icon">
+                ><button class="btn-icon" onclick="showMedalPopover()">
                   <img src="./images/delete.svg" />
                 </button>
                 <button class="btn-icon">
@@ -277,17 +279,40 @@
               </span>
               <span class="task-deadline-col">2020-07-12</span>
               <span class="task-status-col padding">Padding</span>
-              <span class="task-operation-col"
-                ><button class="btn-icon">
+              <span class="task-operation-col">
+                <button class="btn-icon">
                   <img src="./images/delete.svg" />
                 </button>
                 <button class="btn-icon">
-                  <img src="./images/update.svg" /></button
-              ></span>
+                  <img src="./images/update.svg" />
+                </button>
+              </span>
             </ol>
           </ul>
         </section>
       </article>
     </main>
+    <article id="modal" class="modal">
+      <section id="popover" class="popover">
+        <header id="modalTitle" class="modal-title">
+          <img src="./images/modal_delete_icon.svg" />
+          <h2>Delete Task</h2>
+          <button class="btn-icon" onclick="hideMedalPopover()">
+            <img src="./images/modal_cancel_icon.svg" />
+          </button>
+        </header>
+        <section id="modalContainer" class="modalContainer">
+          <p>
+            Do you confirm to delete task: "Learing React" ?
+          </p>
+        </section>
+        <footer id="modalFooter" class="modal-footer">
+          <button class="model-btn-cancel" onclick="hideMedalPopover()">
+            取消
+          </button>
+          <button class="model-btn-ok">确认</button>
+        </footer>
+      </section>
+    </article>
   </body>
 </html>
