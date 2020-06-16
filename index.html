@@ -90,7 +90,7 @@
             <button class="btn btn-search" onclick="searchTasks()">
               <img src="./images/search.svg" />
             </button>
-            <button class="btn">
+            <button class="btn" onclick="createAddTaskPopover()">
               <img src="./images/add.svg" />
             </button>
           </p>
@@ -117,7 +117,21 @@
             <img src="./images/modal_cancel_icon.svg" />
           </button>
         </header>
-        <section id="modalContainer" class="modalContainer"></section>
+        <section id="modalContainer" class="modalContainer">
+          <p class="textContainer">
+            <label for="taskName">name</label>
+            <input id="taskName" type="text" />
+            <label for="taskDeadline">deadline</label>
+            <input id="taskDeadline" type="text" />
+            <label for="taskDesc">Description</label>
+            <textarea
+              id="taskDes"
+              rows="5"
+              maxlength="200"
+              placeholder="Please enter task descript, Maximum 200 characters"
+            ></textarea>
+          </p>
+        </section>
         <footer id="modalFooter" class="modal-footer">
           <button class="model-btn-cancel" onclick="hideModalPopover()">
             取消
