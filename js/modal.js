@@ -26,9 +26,12 @@ function deleteTask(id) {
 }
 
 function createTask() {
-  let name = document.getElementById('taskName').value;
-  let deadline = document.getElementById('taskDeadline').value;
-  let desc = document.getElementById('taskDesc').value;
+  let taskName = document.getElementById('taskName');
+  let deadline = document.getElementById('taskDeadline');
+  let desc = document.getElementById('taskDesc');
+  if (requriedCheck([taskName, deadline, desc])) {
+    return;
+  }
   let allTask = getAllTasks();
   const maxId = allTask.reduce(
     (preId, task) => (preId > task.id ? preId : task.id),
@@ -36,15 +39,26 @@ function createTask() {
   );
   let task = {
     id: maxId + 1,
-    name: name,
-    deadline: deadline,
-    description: desc,
+    name: taskName.value,
+    deadline: deadline.value,
+    description: desc.value,
     status: 'Active',
   };
   allTask.push(task);
   saveAllTasks(allTask);
   renderPage();
   hideModalPopover();
+}
+
+function requriedCheck(elements) {
+  let result = false;
+  elements.forEach((element) => {
+    if (!element.value || element.value.trim() === '') {
+      element.classList.add('invid-input');
+      result = true;
+    }
+  });
+  return result;
 }
 
 function createAddTaskPopover() {
