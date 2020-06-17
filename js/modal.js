@@ -8,17 +8,6 @@ function hideModalPopover() {
   modal.classList.remove('modal-flex-center');
 }
 
-function showDeleteModalPopover(id) {
-  const icon = './images/modal_delete_icon.svg';
-  const title = 'Delete Task';
-  let p = document.createElement('p');
-  let taskName = findTask(id).name;
-  p.textContent = 'Do you confirm to delete task: "' + taskName + '" ?';
-  const okBtnClickEvent = 'deleteTask(' + id + ')';
-  createModalPopover(icon, title, p, okBtnClickEvent);
-  showModalPopover();
-}
-
 function deleteTask(id) {
   removeTask(id);
   renderPage();
@@ -61,11 +50,54 @@ function requriedCheck(elements) {
   return result;
 }
 
+function createDeletePopover(id) {
+  const icon = './images/modal_delete_icon.svg';
+  const title = 'Delete Task';
+  const okBtnClickEvent = 'deleteTask(' + id + ')';
+  createPopoverHeaderAndFooter(icon, title, okBtnClickEvent);
+  let p = document.createElement('p');
+  let taskName = findTask(id).name;
+  p.textContent = 'Do you confirm to delete task: "' + taskName + '" ?';
+  let modalContainer = document.getElementById('modalContainer');
+  modalContainer.innerHTML = '';
+  modalContainer.appendChild(p);
+  showModalPopover();
+}
+
 function createAddTaskPopover() {
   const icon = './images/modal_add_icon.svg';
   const title = 'New A Task';
+  createModalPopover(icon, title, 'createTask()');
+  showModalPopover();
+}
+
+function createUpdateTaskPopover(id) {
+  const icon = './images/modal_update_icon.svg';
+  const title = 'Update A Task';
+  const okBtnClickEvent = 'updateTask(' + id + ')';
+  let task = findTask(id);
+  createModalPopover(icon, title, okBtnClickEvent, task);
+  showModalPopover();
+}
+
+function createModalPopover(icon, title, okBtnClickEvent, task) {
+  createPopoverHeaderAndFooter(icon, title, okBtnClickEvent);
+  createPopoverContent(task);
+}
+
+function createPopoverHeaderAndFooter(icon, title, okBtnClickEvent) {
+  let modalIcon = document.getElementById('modalIcon');
+  modalIcon.setAttribute('src', icon);
+  let modalTitle = document.getElementById('modalTitle');
+  modalTitle.textContent = title;
+  let okBtn = document.getElementById('modalBtnOk');
+  okBtn.setAttribute('onclick', okBtnClickEvent);
+}
+
+function createPopoverContent(task) {
   let container = document.createElement('p');
   container.classList.add('textContainer');
+
   let nameLabel = document.createElement('label');
   nameLabel.setAttribute('for', 'taskName');
   nameLabel.textContent = 'Name';
@@ -73,6 +105,7 @@ function createAddTaskPopover() {
   let nameInput = document.createElement('input');
   nameInput.setAttribute('type', 'text');
   nameInput.setAttribute('id', 'taskName');
+  nameInput.value = task ? task.name : '';
   container.appendChild(nameInput);
 
   let deadlineLabel = document.createElement('label');
@@ -82,7 +115,53 @@ function createAddTaskPopover() {
   let deadlineInput = document.createElement('input');
   deadlineInput.setAttribute('type', 'text');
   deadlineInput.setAttribute('id', 'taskDeadline');
+  deadlineInput.value = task ? task.deadline : '';
   container.appendChild(deadlineInput);
+
+  if (task) {
+    let statusLabel = document.createElement('label');
+    statusLabel.textContent = 'Status';
+    container.appendChild(statusLabel);
+    let statusContainer = document.createElement('div');
+    statusContainer.classList.add('status-container');
+    let activeInput = document.createElement('input');
+    activeInput.setAttribute('type', 'radio');
+    activeInput.setAttribute('id', 'active');
+    activeInput.setAttribute('name', 'Status');
+    activeInput.setAttribute('value', 'Active');
+    activeInput.checked = task.status === 'Active';
+    statusContainer.appendChild(activeInput);
+    let activeLable = document.createElement('label');
+    activeLable.textContent = 'Active';
+    activeLable.setAttribute('for', 'active');
+    statusContainer.appendChild(activeLable);
+
+    let paddingInput = document.createElement('input');
+    paddingInput.setAttribute('type', 'radio');
+    paddingInput.setAttribute('id', 'padding');
+    paddingInput.setAttribute('name', 'Status');
+    paddingInput.setAttribute('value', 'Padding');
+    paddingInput.checked = task.status === 'Padding';
+    statusContainer.appendChild(paddingInput);
+    let paddingLable = document.createElement('label');
+    paddingLable.textContent = 'Padding';
+    paddingLable.setAttribute('for', 'padding');
+    statusContainer.appendChild(paddingLable);
+
+    let closedInput = document.createElement('input');
+    closedInput.setAttribute('type', 'radio');
+    closedInput.setAttribute('id', 'closed');
+    closedInput.setAttribute('name', 'Status');
+    closedInput.setAttribute('value', 'Closed');
+    closedInput.checked = task.status === 'Closed';
+    statusContainer.appendChild(closedInput);
+    let closedLable = document.createElement('label');
+    closedLable.textContent = 'Closed';
+    closedLable.setAttribute('for', 'closed');
+    statusContainer.appendChild(closedLable);
+
+    container.appendChild(statusContainer);
+  }
 
   let descLabel = document.createElement('label');
   descLabel.setAttribute('for', 'taskDesc');
@@ -96,21 +175,10 @@ function createAddTaskPopover() {
     'placeholder',
     'Please enter task descript, Maximum 200 characters'
   );
+  descTextarea.value = task ? task.description : '';
   container.appendChild(descTextarea);
 
-  createModalPopover(icon, title, container, 'createTask()');
-  showModalPopover();
-}
-
-function createModalPopover(icon, title, contentElements, okBtnClickEvent) {
-  let modalIcon = document.getElementById('modalIcon');
-  modalIcon.setAttribute('src', icon);
-  let modalTitle = document.getElementById('modalTitle');
-  modalTitle.textContent = title;
   let modalContainer = document.getElementById('modalContainer');
   modalContainer.innerHTML = '';
-  modalContainer.appendChild(contentElements);
-  let okBtn = document.getElementById('modalBtnOk');
-  okBtn.setAttribute('onclick', okBtnClickEvent);
-  showModalPopover();
+  modalContainer.appendChild(container);
 }

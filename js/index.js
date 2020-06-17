@@ -127,7 +127,7 @@ function generateTaskElement(task, index) {
   operatorElement.classList.add('task-operation-col');
   let deleteBtn = document.createElement('button');
   deleteBtn.classList.add('btn-icon');
-  deleteBtn.setAttribute('onclick', 'showDeleteModalPopover(' + task.id + ')');
+  deleteBtn.setAttribute('onclick', 'createDeletePopover(' + task.id + ')');
   let deleteIcon = document.createElement('img');
   deleteIcon.setAttribute('src', './images/delete.svg');
   deleteBtn.appendChild(deleteIcon);
@@ -135,6 +135,7 @@ function generateTaskElement(task, index) {
 
   let updateBtn = document.createElement('button');
   updateBtn.classList.add('btn-icon');
+  updateBtn.setAttribute('onclick', 'createUpdateTaskPopover(' + task.id + ')');
   let uopdateIcon = document.createElement('img');
   uopdateIcon.setAttribute('src', './images/update.svg');
   updateBtn.appendChild(uopdateIcon);
