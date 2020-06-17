@@ -50,6 +50,29 @@ function requriedCheck(elements) {
   return result;
 }
 
+function updateTask(id) {
+  let taskName = document.getElementById('taskName');
+  let deadline = document.getElementById('taskDeadline');
+  let desc = document.getElementById('taskDesc');
+  if (requriedCheck([taskName, deadline, desc])) {
+    return;
+  }
+  let statusDoms = document.getElementsByName('Status');
+  let status = Array.from(statusDoms).find((redio) => redio.checked).value;
+  let tasks = getAllTasks().map((task) => {
+    if (task.id === id) {
+      task.name = taskName.value;
+      task.deadline = deadline.value;
+      task.description = desc.value;
+      task.status = status;
+    }
+    return task;
+  });
+  saveAllTasks(tasks);
+  renderPage();
+  hideModalPopover();
+}
+
 function createDeletePopover(id) {
   const icon = './images/modal_delete_icon.svg';
   const title = 'Delete Task';
