@@ -32,6 +32,7 @@ function createTask() {
     deadline: deadline.value,
     description: desc.value,
     status: 'Active',
+    createDate: new Date().getTime(),
   };
   allTask.push(task);
   saveAllTasks(allTask);

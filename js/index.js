@@ -29,8 +29,9 @@ function filterTasksByStatus(status) {
 function showStatisticesCards() {
   let allTasksCount = getAllTasks().length;
   document.getElementById('allTasksCount').textContent = allTasksCount;
-  let activeTasksCount = tasks.filter((task) => task.status === 'Active')
-    .length;
+  let activeTasksCount = getAllTasks().filter(
+    (task) => task.status === 'Active'
+  ).length;
   document.getElementById('activeTasksCount').textContent = activeTasksCount;
   let activeTasksProportion =
     allTasksCount > 0
@@ -39,8 +40,9 @@ function showStatisticesCards() {
   document.getElementById(
     'activeTasksProportion'
   ).textContent = activeTasksProportion;
-  let paddingTasksCount = tasks.filter((task) => task.status === 'Padding')
-    .length;
+  let paddingTasksCount = getAllTasks().filter(
+    (task) => task.status === 'Padding'
+  ).length;
   document.getElementById('paddingTasksCount').textContent = paddingTasksCount;
   let paddingTasksProportion =
     allTasksCount > 0
@@ -49,8 +51,9 @@ function showStatisticesCards() {
   document.getElementById(
     'paddingTasksProportion'
   ).textContent = paddingTasksProportion;
-  let closedTasksCount = tasks.filter((task) => task.status === 'Closed')
-    .length;
+  let closedTasksCount = getAllTasks().filter(
+    (task) => task.status === 'Closed'
+  ).length;
   document.getElementById('closedTasksCount').textContent = closedTasksCount;
   let closedTasksProportion =
     allTasksCount > 0
@@ -62,13 +65,29 @@ function showStatisticesCards() {
 }
 
 function showAllTasks() {
-  saveAllTasks(tasks);
   renderPage();
 }
 
-function renderPage() {
+function renderPage(sortKey = 'createDate', order) {
   showStatisticesCards();
-  showTasks(getAllTasks());
+  let allTask = getAllTasks();
+  allTask.sort(compareValues(sortKey, order));
+  showTasks(allTask);
+}
+
+function compareValues(key, order = 'desc') {
+  return function innerSort(a, b) {
+    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      return 0;
+    }
+
+    const varA = typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+    const varB = typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
+
+    let comparison = varA > varB ? 1 : -1;
+
+    return order === 'asc' ? comparison : comparison * -1;
+  };
 }
 
 function showTasks(tasks) {
