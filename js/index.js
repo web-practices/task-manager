@@ -68,6 +68,19 @@ function showAllTasks() {
   renderPage();
 }
 
+function sortTasks(ele, sortKey, order) {
+  let focusElements = document.getElementsByClassName('sort-btn-focus');
+  Array.from(focusElements).forEach((element) => {
+    element.classList.remove('sort-btn-focus');
+    element.classList.add('sort-btn-normal');
+  });
+
+  ele.classList.remove('sort-btn-normal');
+  ele.classList.add('sort-btn-focus');
+
+  renderPage(sortKey, order);
+}
+
 function renderPage(sortKey = 'createDate', order) {
   showStatisticesCards();
   let allTask = getAllTasks();
