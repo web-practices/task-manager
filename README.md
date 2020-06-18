@@ -78,6 +78,8 @@
 
 ## 排序
 
+![task manager sorted](https://cdn.u1.huluxia.com/g4/M03/77/53/rBAAdl7rhB6Ac5JsAAJpu-bSOcU597.jpg)
+
 列表区的表头上，任务名称、截止日期和任务状态右边有对应的排序按钮，用户单击对于的排序按钮，将按照下面规则进行排序：
 
 * 任务名称和状态：单击向上的图标，按照ASCII码正序的方式排序，该图标高亮。单击向下的图标，按照ASCII码倒叙的方式排序，该图标高亮
