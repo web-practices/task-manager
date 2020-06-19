@@ -1,7 +1,14 @@
+var sort = {
+  key: null,
+  order: null,
+};
 function searchTasks() {
   let searchText = document.getElementById('searchText').value;
   if (searchText.trim()) {
     let filteredTasks = findTasksByName(searchText.trim());
+    if (sort.key && sort.order) {
+      filteredTasks.sort(compareValues(sort.key, sort.order));
+    }
     showTasks(filteredTasks);
   }
 }
@@ -77,13 +84,18 @@ function sortTasks(ele, sortKey, order) {
 
   ele.classList.remove('sort-btn-normal');
   ele.classList.add('sort-btn-focus');
-
+  sort.key = sortKey;
+  sort.order = order;
   renderPage(sortKey, order);
 }
 
 function renderPage(sortKey = 'createDate', order) {
   showStatisticesCards();
+  let searchText = document.getElementById('searchText').value;
   let allTask = getAllTasks();
+  if (searchText.trim()) {
+    allTask = findTasksByName(searchText.trim());
+  }
   allTask.sort(compareValues(sortKey, order));
   showTasks(allTask);
 }
@@ -106,7 +118,6 @@ function compareValues(key, order = 'desc') {
 function showTasks(tasks) {
   let taskBody = document.getElementById('taskbody');
   taskBody.innerHTML = '';
-  // console.log(tasks);
   if (tasks && tasks.length > 0) {
     tasks.forEach((task, index) => {
       let row = generateTaskElement(task, index + 1);
