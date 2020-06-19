@@ -106,39 +106,39 @@ function compareValues(key, order = 'desc') {
 function showTasks(tasks) {
   let taskBody = document.getElementById('taskbody');
   taskBody.innerHTML = '';
-  console.log(tasks);
+  // console.log(tasks);
   if (tasks && tasks.length > 0) {
     tasks.forEach((task, index) => {
-      let li = generateTaskElement(task, index + 1);
-      taskBody.appendChild(li);
+      let row = generateTaskElement(task, index + 1);
+      taskBody.appendChild(row);
     });
   }
 }
 
 function generateTaskElement(task, index) {
-  let li = document.createElement('li');
-  li.classList.add('task-line');
-  let indexElement = document.createElement('span');
+  let row = document.createElement('tr');
+  row.classList.add('task-row');
+  let indexElement = document.createElement('td');
   indexElement.classList.add('task-num-col');
   indexElement.textContent = index;
-  li.appendChild(indexElement);
+  row.appendChild(indexElement);
 
-  let nameElement = document.createElement('span');
+  let nameElement = document.createElement('td');
   nameElement.classList.add('task-name-col');
   nameElement.textContent = task.name;
-  li.appendChild(nameElement);
+  row.appendChild(nameElement);
 
-  let desElement = document.createElement('span');
+  let desElement = document.createElement('td');
   desElement.classList.add('task-desc-col');
   desElement.textContent = task.description;
-  li.appendChild(desElement);
+  row.appendChild(desElement);
 
-  let deadlineElement = document.createElement('span');
+  let deadlineElement = document.createElement('td');
   deadlineElement.classList.add('task-deadline-col');
   deadlineElement.textContent = task.deadline;
-  li.appendChild(deadlineElement);
+  row.appendChild(deadlineElement);
 
-  let statusElement = document.createElement('span');
+  let statusElement = document.createElement('td');
   statusElement.classList.add('task-status-col');
   switch (task.status) {
     case 'Active':
@@ -153,9 +153,9 @@ function generateTaskElement(task, index) {
     default:
   }
   statusElement.textContent = task.status;
-  li.appendChild(statusElement);
+  row.appendChild(statusElement);
 
-  let operatorElement = document.createElement('span');
+  let operatorElement = document.createElement('td');
   operatorElement.classList.add('task-operation-col');
   let deleteBtn = document.createElement('button');
   deleteBtn.classList.add('btn-icon');
@@ -173,6 +173,6 @@ function generateTaskElement(task, index) {
   updateBtn.appendChild(uopdateIcon);
   operatorElement.appendChild(updateBtn);
 
-  li.appendChild(operatorElement);
-  return li;
+  row.appendChild(operatorElement);
+  return row;
 }

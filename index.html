@@ -88,57 +88,60 @@
           </p>
         </section>
         <section id="taskList" class="task-list">
-          <header class="task-header">
-            <span class="task-num-col">#</span>
-            <span class="task-name-col">
-              Task Name
-              <span class="sort-container">
-                <button
-                  id="sortUp"
-                  class="sort-btn sort_up sort-btn-normal"
-                  onclick="sortTasks(this, 'name', 'asc')"
-                ></button>
-                <button
-                  id="sortDown"
-                  class="sort-btn sort_down sort-btn-normal"
-                  onclick="sortTasks(this, 'name', 'desc')"
-                ></button>
-              </span>
-            </span>
-            <span class="task-desc-col">Task Description</span>
-            <span class="task-deadline-col">
-              Deadline
-              <span class="sort-container">
-                <button
-                  id="sortUp"
-                  class="sort-btn sort_up sort-btn-normal"
-                  onclick="sortTasks(this, 'deadline', 'asc')"
-                ></button>
-                <button
-                  id="sortDown"
-                  class="sort-btn sort_down sort-btn-normal"
-                  onclick="sortTasks(this, 'deadline', 'desc')"
-                ></button>
-              </span>
-            </span>
-            <span class="task-status-col">
-              Status
-              <span class="sort-container">
-                <button
-                  id="sortUp"
-                  class="sort-btn sort_up sort-btn-normal"
-                  onclick="sortTasks(this, 'status', 'asc')"
-                ></button>
-                <button
-                  id="sortDown"
-                  class="sort-btn sort_down sort-btn-normal"
-                  onclick="sortTasks(this, 'status', 'desc')"
-                ></button>
-              </span>
-            </span>
-            <span class="task-operation-col">Operation</span>
-          </header>
-          <ol id="taskbody"></ol>
+          <table class="tasks-data-container">
+            <thead class="task-header">
+              <tr class="task-row">
+                <th class="task-num-col">#</th>
+                <th class="task-name-col">
+                  Task Name
+                  <span class="sort-container">
+                    <button
+                      id="sortUp"
+                      class="sort-btn sort_up sort-btn-normal"
+                      onclick="sortTasks(this, 'name', 'asc')"
+                    ></button>
+                    <button
+                      id="sortDown"
+                      class="sort-btn sort_down sort-btn-normal"
+                      onclick="sortTasks(this, 'name', 'desc')"
+                    ></button>
+                  </span>
+                </th>
+                <th class="task-desc-col">Task Description</th>
+                <th class="task-deadline-col">
+                  Deadline
+                  <span class="sort-container">
+                    <button
+                      id="sortUp"
+                      class="sort-btn sort_up sort-btn-normal"
+                      onclick="sortTasks(this, 'deadline', 'asc')"
+                    ></button>
+                    <button
+                      id="sortDown"
+                      class="sort-btn sort_down sort-btn-normal"
+                      onclick="sortTasks(this, 'deadline', 'desc')"
+                    ></button>
+                  </span>
+                </th>
+                <th class="task-status-col">
+                  Status<span class="sort-container">
+                    <button
+                      id="sortUp"
+                      class="sort-btn sort_up sort-btn-normal"
+                      onclick="sortTasks(this, 'status', 'asc')"
+                    ></button>
+                    <button
+                      id="sortDown"
+                      class="sort-btn sort_down sort-btn-normal"
+                      onclick="sortTasks(this, 'status', 'desc')"
+                    ></button>
+                  </span>
+                </th>
+                <th class="task-operation-col">Operation</th>
+              </tr>
+            </thead>
+            <tbody id="taskbody" class="task-body"></tbody>
+          </table>
         </section>
       </article>
     </main>
