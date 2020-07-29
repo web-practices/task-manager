@@ -78,7 +78,7 @@
 
 ## 排序
 
-![task manager sorted](https://cdn.u1.huluxia.com/g4/M03/77/53/rBAAdl7rhB6Ac5JsAAJpu-bSOcU597.jpg)
+![task manager sorted](https://tva1.sinaimg.cn/large/007S8ZIlly1gh87nkew09j31r00cmdju.jpg)
 
 列表区的表头上，任务名称、截止日期和任务状态右边有对应的排序按钮，用户单击对于的排序按钮，将按照下面规则进行排序：
 
